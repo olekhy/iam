@@ -3,6 +3,10 @@ iam
 iam is a simple script to keep track of what you are doing.
 Useful if you often work at command line and are often interupted.
 
+Installation
+------------
+Put iam in your path (~/bin is usually a good place) and make it executable
+
 Usage
 -----
 
