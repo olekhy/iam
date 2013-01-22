@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# iam is a simple script to keep track of what you are doing.
+# Useful for if you are often interupted.
+
+MEM_FILE=~/.iam
+touch $MEM_FILE
+MEM_SIZE=`wc -l $MEM_FILE | cut -d " " -f 1`
+DATE=`date +"At %H:%M on %d/%m/%Y "`
+
+while getopts "lcemh" opt
+do
+case $opt in 
+	l)
+		if [ $MEM_SIZE -lt 1 ]
+		then
+			echo 'I am not doing anything'
+		fi
+		cat $MEM_FILE
+		exit
+		;;
+	c)
+		echo -n > $MEM_FILE
+		exit
+		;;
+	e)
+		$EDITOR $MEM_FILE
+		exit
+		;;
+	m)
+		echo "$DATE --MARK--" >> $MEM_FILE
+		exit
+		;;
+	h)
+		cat <<USAGE
+iam is a simple script for those who often get interupted
+USAGE: iam [option | message]
+
+Options
+-l  Lists the last ten entries
+-c  Clears the history
+-e  Allows you to directly edit the history file
+-m  Mark the history with current timestamp
+-h  Displays this message
+
+With no option, iam will either show the last entry or store a new entry if the
+message is present.
+USAGE
+		exit
+		;;
+	\?)
+		exit
+		;;
+esac
+done
+
+if [ $# -eq 0 ]
+then
+	if [ $MEM_SIZE -lt 1 ]
+	then
+		echo 'I am not doing anything'
+	fi
+	tail -1 $MEM_FILE
+else
+	echo -n "$DATE I was " >> $MEM_FILE
+	echo "$*" >> $MEM_FILE
+fi
