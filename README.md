@@ -21,7 +21,7 @@ Usage
 Examples
 --------
 
-1. You are working when a colleague wanders over and starts talking. Before you get derailed, make a note.
+1) You are working when a colleague wanders over and starts talking. Before you get derailed, make a note.
 
     $ iam just about to update IndexController.php with user details
 
@@ -32,7 +32,7 @@ Your colleague chats away and then finally leaves
 
 Ah yes. That was it.
 
-2. You are called to go to a meeting.
+2) You are called to go to a meeting.
 
 You think this may put you behind. Better make a note of how long it goes on for
 
